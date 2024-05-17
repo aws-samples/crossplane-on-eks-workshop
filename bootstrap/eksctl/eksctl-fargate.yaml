@@ -1,0 +1,18 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: crossplane-ssp
+  region: us-west-2
+  version: "1.24"
+fargateProfiles:
+  - name: kube-system
+    selectors:
+      - namespace: kube-system
+  - name: crossplane
+    selectors:
+      - namespace: crossplane-system
+iam:
+  withOIDC: true
