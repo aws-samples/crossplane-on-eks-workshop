@@ -55,7 +55,7 @@ locals {
 
   tags = {
     Blueprint  = local.name
-    GithubRepo = "github.com/awslabs/crossplane-on-eks"
+    GithubRepo = "github.com/aws-samples/crossplane-on-eks-workshop"
   }
 }
 
@@ -133,7 +133,7 @@ module "eks_blueprints_addons" {
   cluster_endpoint  = module.eks.cluster_endpoint
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
-  enable_argocd     = true
+  enable_argocd     = false
   argocd = {
     namespace     = "argocd"
     chart_version = "6.3.1" # ArgoCD v2.10.1
@@ -146,7 +146,7 @@ module "eks_blueprints_addons" {
   }
   enable_gatekeeper                   = true
   enable_metrics_server               = true
-  enable_kube_prometheus_stack        = true
+  enable_kube_prometheus_stack        = false
   enable_aws_load_balancer_controller = true
   kube_prometheus_stack = {
     values = [file("${path.module}/kube-prometheus-stack-values.yaml")]
@@ -159,7 +159,7 @@ module "eks_blueprints_addons" {
 # Crossplane
 #---------------------------------------------------------------
 module "crossplane" {
-  source            = "github.com/awslabs/crossplane-on-eks/bootstrap/terraform/addon/"
+  source            = "github.com/aws-samples/crossplane-on-eks-workshop/bootstrap/terraform/addon/"
   enable_crossplane = true
   crossplane = {
     values = [yamlencode({
@@ -216,19 +216,8 @@ locals {
     provider_config_name = "aws-provider-config" #this is the providerConfigName used in all the examples in this repo
     families = [
       "dynamodb",
-      "ec2",
-      "elasticache",
       "iam",
-      "kms",
-      "lambda",
-      "rds",
-      "s3",
-      "sns",
-      "sqs",
-      "vpc",
-      "apigateway",
-      "cloudwatch",
-      "cloudwatchlogs"
+      "s3"
     ]
   }
 
