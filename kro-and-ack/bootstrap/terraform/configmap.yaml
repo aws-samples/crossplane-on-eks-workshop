@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: this
+  namespace: default
+data:
+  awsAccountID: "${awsAccountID}"
+  eksOIDC: ${eksOIDC}
+  vpcID: ${vpcID}
+  subnetIDs: ${subnetIDs}
+  region: ${region}
+  clusterName: ${clusterName}
