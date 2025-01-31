@@ -59,17 +59,8 @@ module "eks_ack_addons" {
   enable_apigatewayv2      = true
   enable_dynamodb          = true
   enable_s3                = true
-  enable_elasticache       = true
   enable_rds               = true
   enable_route53           = true
-  enable_sqs               = true
-  sqs = {
-    chart_version = "1.1.0"
-  }
-  enable_sns               = true
-  sns = {
-    chart_version = "1.0.14"
-  }
   enable_secretsmanager    = true
 
   tags = local.tags
