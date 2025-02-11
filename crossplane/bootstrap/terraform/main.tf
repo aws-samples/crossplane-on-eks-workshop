@@ -55,7 +55,7 @@ locals {
 
   tags = {
     Blueprint  = local.name
-    GithubRepo = "github.com/aws-samples/crossplane-on-eks-workshop"
+    GithubRepo = "github.com/aws-samples/krmops-on-eks-workshop"
   }
 }
 
@@ -159,7 +159,7 @@ module "eks_blueprints_addons" {
 # Crossplane
 #---------------------------------------------------------------
 module "crossplane" {
-  source            = "github.com/aws-samples/crossplane-on-eks-workshop/bootstrap/terraform/addon/"
+  source            = "github.com/aws-samples/krmops-on-eks-workshop/crossplane/bootstrap/terraform/addon/"
   enable_crossplane = true
   crossplane = {
     values = [yamlencode({
