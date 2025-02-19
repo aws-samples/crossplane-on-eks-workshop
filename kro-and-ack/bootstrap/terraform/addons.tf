@@ -21,7 +21,6 @@ module "eks_blueprints_addons" {
   }
 
   enable_metrics_server               = true
-  enable_aws_load_balancer_controller = true
   enable_external_secrets             = true
   enable_external_dns                 = true
   external_dns_route53_zone_arns      = ["arn:aws:route53:::hostedzone/Z07589007ZVX1K0A3C82"]
@@ -47,17 +46,32 @@ module "eks_ack_addons" {
   # Controllers to enable
   enable_iam               = true
   iam = {
-    chart_version = "1.3.13"
+    chart_version = "1.3.17"
   }
   enable_ec2               = true
   ec2 = {
-    chart_version = "1.2.28"
+    chart_version = "1.3.5"
   }
   enable_eks               = true
+  eks = {
+    chart_version = "1.6.1"
+  }
   enable_kms               = true
+  kms = {
+    chart_version = "1.0.21"
+  }
   enable_dynamodb          = true
+  dynamodb = {
+    chart_version = "1.2.18"
+  }
   enable_s3                = true
+  s3 = {
+    chart_version = "1.0.23"
+  }
   enable_rds               = true
+  rds = {
+    chart_version = "v1.4.10"
+  }
   enable_secretsmanager    = true
 
   tags = local.tags
@@ -75,6 +89,6 @@ module "kro" {
   namespace        = "kro"
   create_namespace = true
   chart            = "kro"
-  chart_version    = "0.1.0"
+  chart_version    = "0.2.1"
   repository       = "oci://public.ecr.aws/kro"
 }

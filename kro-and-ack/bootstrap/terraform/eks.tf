@@ -22,8 +22,6 @@ module "eks" {
   subnet_ids = module.vpc.private_subnets
 
   tags = local.tags
-
-  depends_on = [module.vpc]
 }
 
 resource "kubectl_manifest" "configmap" {
